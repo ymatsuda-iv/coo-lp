@@ -8,6 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700;900&family=Shippori+Mincho:wght@600;700;800&display=swap" rel="stylesheet">
+<link rel="icon" type="image/png" href="favicon.png">
 <style>
   :root{
     --ivory:#F5F2ED;
@@ -267,8 +268,7 @@
   .mid-cta h3{color:#fff;font-size:clamp(1.3rem,3vw,1.85rem);margin-bottom:26px;line-height:1.6;}
   .voices-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;}
   .voice{background:var(--paper);border:1px solid var(--line);border-radius:18px;padding:30px 26px 24px;position:relative;}
-  .voice::before{content:"\201C";position:absolute;top:6px;left:16px;font-family:"Shippori Mincho",serif;font-size:3rem;color:var(--terra);opacity:.35;line-height:1;}
-  .voice p{font-size:.96rem;color:var(--slate-deep);margin:16px 0 18px;position:relative;line-height:1.85;}
+  .voice p{font-size:.96rem;color:var(--slate-deep);margin:4px 0 18px;position:relative;line-height:1.9;}
   .voice .who{font-size:.8rem;color:var(--terra-deep);font-weight:700;border-top:1px dashed var(--line);padding-top:12px;}
   .voice.placeholder{display:flex;align-items:center;justify-content:center;text-align:center;color:var(--slate);opacity:.55;font-size:.86rem;border-style:dashed;min-height:150px;}
   .voice.placeholder::before{display:none;}
@@ -278,13 +278,18 @@
   .limited b{font-family:"Shippori Mincho",serif;font-size:1.1em;}
   .quals{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px;}
   .qual{font-size:.72rem;background:var(--ivory);color:var(--slate);border:1px solid var(--line);border-radius:999px;padding:.45em .9em;}
+  .brand-logo{height:30px;width:auto;display:block;}
+  .foot-logo{height:30px;width:auto;margin:0 auto 14px;display:block;filter:brightness(0) invert(1);opacity:.9;}
+  .pphoto{width:100%;aspect-ratio:4/3;object-fit:cover;object-position:center 26%;border-radius:16px;margin-bottom:22px;}
+  .voices-grid.two{grid-template-columns:repeat(2,1fr);max-width:920px;margin:0 auto;}
+  @media(max-width:860px){.voices-grid.two{grid-template-columns:1fr;}}
 </style>
 </head>
 <body>
 
 <header id="hdr">
   <div class="wrap nav">
-    <a href="#top" class="logo">INNOVAGEMENT<small>COO DAIKO</small></a>
+    <a href="#top" class="logo"><img src="logo.png" alt="INNOVAGEMENT" class="brand-logo"></a>
     <a href="#contact" class="cta">無料相談を予約する</a>
   </div>
 </header>
@@ -331,7 +336,7 @@
         <div class="worry reveal"><span class="q">03</span><p>現場は頑張っているのに、事業が前に進む実感がない。</p></div>
         <div class="worry reveal"><span class="q">04</span><p>経理・採用などバックオフィスが属人化し、不安が残る。</p></div>
       </div>
-      <p class="empathy-foot reveal">ひとつでも当てはまるなら、<span class="mincho">“動かせる右腕”</span>が足りていません。</p>
+      <p class="empathy-foot reveal">ひとつでも当てはまるなら、<span class="mincho">動かせる右腕</span>が足りていません。</p>
     </div>
   </section>
 
@@ -341,7 +346,7 @@
       <div class="sec-head reveal">
         <span class="en">What Makes Us Different</span>
         <h2>アドバイスで、終わらない。</h2>
-        <p>評論する顧問・コンサルではありません。描いた絵を“誰がどう動かすか”まで役割分担し、主となって動く部分は私が中に入ります。</p>
+        <p>アドバイスするだけのコンサルは、山ほどいます。描いた絵を、誰が・どう動かすか。経営者がやる部分と、私が主となって動く部分をすみわけし、動かすところまで中に入り込みます。</p>
       </div>
       <div class="compare reveal">
         <div class="col them">
@@ -360,7 +365,7 @@
           <h3>中に入って、動かす。</h3>
           <ul>
             <li>会議のファシリまで実際に担う</li>
-            <li>社長と自分の役割を明確に分担</li>
+            <li>社長と私の役割をすみわけ</li>
             <li>KPI・仕組み化を“運用”まで伴走</li>
             <li>社長がコア業務に集中できる状態へ</li>
           </ul>
@@ -379,7 +384,7 @@
       </div>
       <div class="svc-grid">
         <div class="svc reveal"><span class="no">01</span><h3>経営者の壁打ち</h3><p>頭の中を一緒に整理し、意思決定の精度とスピードを上げます。</p></div>
-        <div class="svc reveal"><span class="no">02</span><h3>会議ファシリテーション</h3><p>決まる・動く会議へ設計。タスクに責任者と期限を落とし込みます。</p></div>
+        <div class="svc reveal"><span class="no">02</span><h3>会議ファシリテーション</h3><p>決まる・動く会議へ。事業が前に進むスピードを倍速にします。</p></div>
         <div class="svc reveal"><span class="no">03</span><h3>KPI管理</h3><p>数字で現在地を可視化し、打ち手を継続的に回す運用をつくります。</p></div>
         <div class="svc reveal"><span class="no">04</span><h3>幹部との1on1</h3><p>幹部の視座を引き上げ、事業課題を自ら解決できる組織に。</p></div>
         <div class="svc reveal"><span class="no">05</span><h3>仕組み化</h3><p>属人業務を「勝手に回る」状態へ。ムダを削りコア業務に集中。</p></div>
@@ -393,7 +398,7 @@
     <div class="wrap">
       <div class="sec-head reveal">
         <span class="en">Case Studies</span>
-        <h2>“前に進んだ”実例。</h2>
+        <h2>実際に、前に進んだ事例。</h2>
         <p>ムダをなくし、会議を機能させ、土台を整える。実際に起きた変化の一部です。</p>
       </div>
       <div class="cases-grid">
@@ -435,12 +440,17 @@
       <div class="sec-head reveal">
         <span class="en">Client Voices</span>
         <h2>お客様の声。</h2>
-        <p>ご支援した経営者の方々からの声を掲載します（準備中）。</p>
+        <p>実際にご支援した経営者の方々から、いただいた声です。</p>
       </div>
-      <div class="voices-grid">
-        <div class="voice placeholder reveal">（ここにお客様の声を掲載します）</div>
-        <div class="voice placeholder reveal">（ここにお客様の声を掲載します）</div>
-        <div class="voice placeholder reveal">（ここにお客様の声を掲載します）</div>
+      <div class="voices-grid two">
+        <div class="voice reveal">
+          <p>初めは事業の壁打ちでした。相談を進めるうちに、マーケ部門の業務の最適化や、社労士に相談する前の労務的な相談、各メンバーとのコミュニケーションの円滑化など、ただ相談する相手ではなく、一緒に事業・会社を良くしていこうという姿勢に感銘を受けました。アドバイスするだけのコンサルは山ほどいますが、ここまで会社の内部のことを理解して進めてもらえたのは、嬉しい誤算でした。</p>
+          <div class="who">ギフトEC・実店舗販売会社　社長／T様</div>
+        </div>
+        <div class="voice reveal">
+          <p>言っても聞かない・思うように動いてもらえない幹部メンバーに辟易としていました。松田さんに入っていただいてからは、会議ファシリを中心に幹部との1on1やチームMTGを実施。第三者の視点で指摘や見解をもらいつつ、実際に動くようにするにはどうしたらいいか、という構造の部分を見直していただいたことで、今までストップしていたプロジェクトがグンと前に進むようになりました。私の言うことは聞かないのに、なぜここまで変わるのか、今でも不思議です。</p>
+          <div class="who">生鮮食品メーカー　社長／S様</div>
+        </div>
       </div>
     </div>
   </section>
@@ -451,7 +461,7 @@
     <div class="wrap">
       <div>
         <span class="en">Why Us</span>
-        <h2>“10年、No.2として<br>動かし続けてきた”実行力。</h2>
+        <h2>10年、No.2として<br>動かし続けてきた実行力。</h2>
         <p>事業会社のナンバー2として10年。研修・会議運営・業務フロー構築・効率化をゴリゴリに進め、事業が前に進む土台を整えてきました。その現場感を、そのままあなたの会社へ。</p>
         <div class="pstats">
           <div class="pstat"><div class="n">10<small>年</small></div><div class="l">No.2としての実務</div></div>
@@ -460,6 +470,7 @@
         </div>
       </div>
       <div class="profile-card">
+        <img src="profile.jpg" alt="松田佑介" class="pphoto">
         <div class="role">代表／COO代行</div>
         <h3>松田 佑介</h3>
         <div class="sub">イノベイジメント株式会社</div>
@@ -482,7 +493,7 @@
       <div class="flow-steps">
         <div class="step reveal"><div class="n">1</div><h3>無料相談</h3><p>現状とお困りごとをお聞きします。売り込みはしません。</p></div>
         <div class="step reveal"><div class="n">2</div><h3>現状整理</h3><p>課題を構造化し、優先順位と打ち手の方向性を一緒に描きます。</p></div>
-        <div class="step reveal"><div class="n">3</div><h3>役割分担の提案</h3><p>社長が担う部分と私が動かす部分を明確に線引きします。</p></div>
+        <div class="step reveal"><div class="n">3</div><h3>すみわけの提案</h3><p>社長が担う部分と、私が主となって動かす部分をすみわけします。</p></div>
         <div class="step reveal"><div class="n">4</div><h3>伴走スタート</h3><p>会議・KPI・仕組み化を運用まで。前に進む状態をつくります。</p></div>
       </div>
     </div>
@@ -540,7 +551,7 @@
 
 <footer>
   <div class="wrap">
-    <a href="#top" class="logo">INNOVAGEMENT</a>
+    <a href="#top"><img src="logo.png" alt="INNOVAGEMENT" class="foot-logo"></a>
     <div>イノベイジメント株式会社　COO代行サービス</div>
     <div style="margin-top:8px;opacity:.6;">© 2026 Innovagement Inc.</div>
   </div>
