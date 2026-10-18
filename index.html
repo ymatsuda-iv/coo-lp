@@ -53,7 +53,7 @@
   .mincho{font-family:"Shippori Mincho",serif;}
   .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px;}
   h1,h2,h3{line-height:1.5;font-weight:700;color:var(--slate-deep);letter-spacing:.01em;}
-  .en{display:none;}
+  .en{display:none!important;}
   .accent{color:var(--terra-deep);}
 
   /* buttons */
@@ -317,6 +317,17 @@
 
   @keyframes rise{from{opacity:0;transform:translateY(34px);}to{opacity:1;transform:none;}}
 
+  .book-form{max-width:620px;margin:40px auto 0;text-align:left;background:var(--paper);border:1px solid var(--line);border-radius:22px;padding:40px 38px;box-shadow:var(--shadow);}
+  .book-form .field{margin-bottom:20px;}
+  .book-form label{display:block;font-size:.9rem;font-weight:700;color:var(--slate-deep);margin-bottom:8px;}
+  .book-form .req{font-size:.68rem;color:#fff;background:var(--terra-deep);border-radius:5px;padding:.15em .55em;margin-left:8px;font-weight:700;vertical-align:middle;}
+  .book-form .opt{font-size:.68rem;color:var(--slate);background:var(--ivory-deep);border-radius:5px;padding:.15em .55em;margin-left:8px;font-weight:700;vertical-align:middle;}
+  .book-form input,.book-form textarea{width:100%;font-family:inherit;font-size:1rem;color:var(--slate-deep);background:var(--ivory);border:1px solid var(--line);border-radius:12px;padding:14px 16px;transition:border-color .2s,box-shadow .2s;}
+  .book-form input:focus,.book-form textarea:focus{outline:none;border-color:var(--terra);box-shadow:0 0 0 3px rgba(201,106,65,.14);}
+  .book-form textarea{resize:vertical;min-height:120px;line-height:1.7;}
+  .book-form .hint{font-size:.78rem;color:var(--slate);margin-top:6px;}
+  .book-form .submit{width:100%;margin-top:8px;border:none;cursor:pointer;}
+  @media(max-width:560px){.book-form{padding:30px 22px;}}
   .sticky-cta{position:fixed;bottom:0;left:0;right:0;z-index:40;display:none;
     padding:12px 16px;background:rgba(245,242,237,.94);backdrop-filter:blur(8px);border-top:1px solid var(--line);}
   .sticky-cta a{display:block;text-align:center;}
@@ -651,12 +662,32 @@
       <div class="limited">毎月 <b>3社</b> 様限定でお受けしています</div>
       <h2>その事業、<br>もう一段、前に進めませんか。</h2>
       <p>「何から手をつけるか」を整理するだけでも、次の一手が見えてきます。まずは30分、現状をお聞かせください。</p>
-      <a href="#" class="cta cta--terra cta--big" data-book="final">無料相談を予約する</a>
       <div class="trust-row">
         <div><b>◎</b> オンライン対応可</div>
         <div><b>◎</b> 売り込みなし</div>
         <div><b>◎</b> 初回ヒアリング無料</div>
       </div>
+      <!-- ★ formrun接続：action を formrun のエンドポイントに、各 name を formrun の項目名に合わせてください -->
+      <form class="book-form" action="FORMRUN_ENDPOINT" method="POST">
+        <div class="field">
+          <label>お名前（フルネーム）<span class="req">必須</span></label>
+          <input type="text" name="お名前" required>
+        </div>
+        <div class="field">
+          <label>会社名・屋号<span class="opt">任意</span></label>
+          <input type="text" name="会社名・屋号" placeholder="個人の方は「個人」とご記入ください">
+        </div>
+        <div class="field">
+          <label>メールアドレス<span class="req">必須</span></label>
+          <input type="email" name="メールアドレス" required placeholder="example@example.com">
+        </div>
+        <div class="field">
+          <label>相談内容<span class="req">必須</span></label>
+          <textarea name="相談内容" required placeholder="現状のお困りごとや、相談したいことをお書きください。"></textarea>
+          <p class="hint">いただいた内容をもとに、初回の無料相談で現状を整理します。</p>
+        </div>
+        <button type="submit" class="cta cta--terra cta--big submit">この内容で相談を申し込む</button>
+      </form>
     </div>
   </section>
 
@@ -676,7 +707,7 @@
   // ★ 予約フォーム／カレンダーのURLをここに設定（未設定時はページ内リンクのまま）
   const BOOKING_URL = "#";
   document.querySelectorAll('[data-book]').forEach(function(a){
-    if(BOOKING_URL && BOOKING_URL !== "#"){ a.href = BOOKING_URL; a.target = "_blank"; a.rel = "noopener"; }
+    if(BOOKING_URL && BOOKING_URL !== "#"){ a.href = BOOKING_URL; a.target = "_blank"; a.rel = "noopener"; } else { a.href = "#contact"; }
     a.addEventListener('click', function(){
       if(typeof gtag === 'function'){ gtag('event','cta_click',{cta_location:a.getAttribute('data-book')}); }
     });
