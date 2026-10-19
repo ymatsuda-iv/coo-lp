@@ -84,8 +84,8 @@
   .brand-logo{height:26px;width:auto;display:block;}
   .nav .cta{padding:.7em 1.5em;font-size:.85rem;}
   /* menu */
-  .nav-links{display:flex;align-items:center;gap:14px;margin-left:auto;}
-  .nav-links a:not(.cta){font-size:.8rem;font-weight:600;color:var(--slate-deep);text-decoration:none;white-space:nowrap;transition:color .2s;}
+  .nav-links{display:flex;align-items:center;gap:12px;margin-left:auto;}
+  .nav-links a:not(.cta){font-size:.78rem;font-weight:600;color:var(--slate-deep);text-decoration:none;white-space:nowrap;transition:color .2s;}
   .nav-links a:not(.cta):hover{color:var(--terra-deep);}
   .nav-cta-drawer{display:none;}
   .nav-cta-head{flex:none;}
@@ -361,6 +361,15 @@
   .book-form .ferr{display:none;font-size:.8rem;color:var(--terra-deep);font-weight:700;margin-top:6px;}
   .book-form .is-error .ferr,.book-form .ferr[style*="block"]{display:block;}
   .book-form .submit{width:100%;margin-top:8px;border:none;cursor:pointer;}
+  .two-paths{max-width:680px;margin:0 auto 20px;display:flex;align-items:stretch;gap:16px;text-align:center;}
+  .two-paths .path{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;padding:26px 20px;background:var(--paper);border:1px solid var(--line);border-radius:18px;}
+  .path-tag{font-size:.84rem;font-weight:700;color:var(--terra-deep);}
+  .path-cta{width:100%;}
+  .path-note{font-size:.8rem;color:var(--slate);line-height:1.7;}
+  .path-divider{display:flex;align-items:center;}
+  .path-divider span{font-size:.82rem;font-weight:700;color:var(--slate);}
+  .form-head{font-size:1.05rem;color:var(--slate-deep);margin:0 auto 14px;max-width:620px;font-weight:700;}
+  @media(max-width:640px){.two-paths{flex-direction:column;gap:10px;} .path-divider{padding:2px 0;}}
   @media(max-width:560px){.book-form{padding:30px 22px;}}
   .sticky-cta{position:fixed;bottom:0;left:0;right:0;z-index:40;display:none;
     padding:12px 16px;background:rgba(245,242,237,.94);backdrop-filter:blur(8px);border-top:1px solid var(--line);}
@@ -380,6 +389,7 @@
       <a href="#difference">コンサルとの違い</a>
       <a href="#services">支援内容</a>
       <a href="#cases">支援事例</a>
+      <a href="#voices">お客様の声</a>
       <a href="#profile">代表の実績</a>
       <a href="#flow">相談の流れ</a>
       <a href="#faq">よくある質問</a>
@@ -407,7 +417,7 @@
         <a href="#" class="cta cta--terra cta--big" data-book="hero">まずは無料で相談する</a>
         <div class="cta-sub">
           <p class="cta-sub-lead">準備は要りません。「何から手をつければいいか分からない」のままで大丈夫です。</p>
-          <p class="cta-sub-line">オンライン30分／カレンダーから日時を選ぶだけ</p>
+          <p class="cta-sub-line">オンライン45分／カレンダーから日時を選ぶだけ</p>
         </div>
         <div class="hero-who">
           <img src="images/profile.jpg" alt="代表 松田佑介" class="hero-who-face">
@@ -604,8 +614,8 @@
     </div>
   </section>
 
-  <!-- ===== VOICES (一時非表示。再表示する際はこのコメントを外す) =====
-  <section class="band">
+  <!-- ===== VOICES ===== -->
+  <section class="band" id="voices">
     <div class="wrap">
       <div class="sec-head reveal">
         <span class="en">Client Voices</span>
@@ -624,7 +634,6 @@
       </div>
     </div>
   </section>
-  ===== /VOICES ===== -->
 
   <!-- ===== PROFILE ===== -->
   <section class="band profile" id="profile">
@@ -713,16 +722,32 @@
       <span class="en">Let's Talk</span>
       <div class="limited">毎月 <b>3社</b> 様限定でお受けしています</div>
       <h2>その事業、<br>もう一段、前に進めませんか。</h2>
-      <p>「何から手をつけるか」を整理するだけでも、次の一手が見えてきます。まずは30分、現状をお聞かせください。</p>
+      <p>「何から手をつけるか」を整理するだけでも、次の一手が見えてきます。まずは45分、現状をお聞かせください。</p>
       <div class="cta-sub cta-sub--center">
         <p class="cta-sub-lead">準備は要りません。「何から手をつければいいか分からない」のままで大丈夫です。</p>
-        <p class="cta-sub-line">オンライン30分／カレンダーから日時を選ぶだけ</p>
+        <p class="cta-sub-line">オンライン45分／カレンダーから日時を選ぶだけ</p>
       </div>
       <div class="trust-row">
         <div><b>◎</b> オンライン対応可</div>
         <div><b>◎</b> 売り込みなし</div>
         <div><b>◎</b> 初回ヒアリング無料</div>
       </div>
+
+      <!-- 2つの導線：そのまま予約 / まず問い合わせ -->
+      <div class="two-paths">
+        <div class="path">
+          <span class="path-tag">そのまま予約したい方</span>
+          <a href="#" class="cta cta--terra cta--big path-cta" data-book="final-booking">カレンダーで日程を選ぶ</a>
+          <span class="path-note">空き枠からその場で予約（オンライン45分）</span>
+        </div>
+        <div class="path-divider"><span>または</span></div>
+        <div class="path">
+          <span class="path-tag">まず問い合わせ・質問したい方</span>
+          <span class="path-note">下のフォームからどうぞ。<br>内容を確認してご連絡します。</span>
+        </div>
+      </div>
+
+      <h3 class="form-head">問い合わせフォーム</h3>
       <!-- formrun接続済み：class="formrun" / action / method は変更しないこと -->
       <form class="book-form formrun" action="https://form.run/api/v1/r/ktjmmbw33r66464k94qvpzyw" method="post">
         <div class="field">
