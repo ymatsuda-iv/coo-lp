@@ -101,6 +101,13 @@
   .hero-sub{font-size:1.12rem;max-width:30em;margin-bottom:38px;color:var(--slate);}
   .hero-sub b{color:var(--slate-deep);font-weight:700;border-bottom:2px solid var(--terra);padding-bottom:1px;}
   .hero-note{margin-top:16px;font-size:.82rem;color:var(--slate);}
+  .cta-sub{margin-top:16px;}
+  .cta-sub-lead{font-size:.9rem;color:var(--slate-deep);font-weight:700;line-height:1.7;margin-bottom:4px;}
+  .cta-sub-line{font-size:.82rem;color:var(--terra-deep);font-weight:700;}
+  .cta-sub--center{max-width:30em;margin-left:auto;margin-right:auto;}
+  .hero-who{display:flex;align-items:center;gap:10px;margin-top:16px;}
+  .hero-who-face{width:40px;height:40px;border-radius:50%;object-fit:cover;object-position:center 18%;border:2px solid var(--paper);box-shadow:0 2px 8px rgba(0,0,0,.12);flex:none;}
+  .hero-who span{font-size:.85rem;color:var(--slate-deep);font-weight:700;}
   .hero-visual{position:relative;animation:rise .9s .15s cubic-bezier(.2,.8,.2,1) both;}
   .stat-card{background:var(--paper);border-radius:26px;padding:32px 30px;
     box-shadow:var(--shadow);border:1px solid rgba(255,255,255,.7);position:relative;}
@@ -207,13 +214,15 @@
   .ba-row{display:flex;align-items:stretch;gap:12px;background:var(--ivory);border-radius:14px;padding:18px 18px;}
   .ba-cell{flex:1;text-align:center;}
   .ba-cell .lb{display:block;font-size:.7rem;letter-spacing:.08em;color:var(--slate);font-weight:700;margin-bottom:6px;}
-  .ba-cell .vl{font-size:1rem;color:var(--slate);line-height:1.4;}
+  .ba-cell .vl{font-size:1rem;color:var(--slate);line-height:1.4;word-break:keep-all;overflow-wrap:anywhere;}
   .ba-cell.after{background:var(--terra-deep);border-radius:12px;padding:12px 8px;box-shadow:0 8px 18px rgba(201,106,65,.28);display:flex;flex-direction:column;justify-content:center;}
   .ba-cell.after .lb{color:rgba(255,255,255,.82);}
-  .ba-cell.after .vl{font-family:"Shippori Mincho",serif;font-weight:800;color:#fff;font-size:1.3rem;}
+  .af-main{display:block;font-family:"Shippori Mincho",serif;font-weight:800;color:#fff;white-space:nowrap;font-size:clamp(1.75rem,8vw,2.5rem);line-height:1.1;}
+  .af-sub{display:block;margin-top:6px;font-size:.74rem;color:rgba(255,255,255,.92);line-height:1.45;word-break:keep-all;overflow-wrap:anywhere;}
   .ba-row .ar{display:flex;align-items:center;font-family:"Shippori Mincho",serif;color:var(--terra-deep);font-weight:800;font-size:1.5rem;}
   .case-foot{margin-top:16px;display:grid;gap:8px;}
   .cf{display:flex;gap:12px;font-size:.9rem;color:var(--slate-deep);align-items:baseline;}
+  .cf>span:last-child{word-break:keep-all;overflow-wrap:anywhere;}
   .cf .lb2{flex:none;font-size:.72rem;font-weight:700;color:var(--terra-deep);background:rgba(201,106,65,.1);padding:.25em .7em;border-radius:6px;}
   @media(max-width:680px){.cases-grid{grid-template-columns:1fr;}}
 
@@ -361,6 +370,14 @@
         </h1>
         <p class="hero-sub">きれいな資料と助言で、終わらせません。<b>経営の右腕として中に入り、私が主となって動く</b>COO代行です。</p>
         <a href="#" class="cta cta--terra cta--big" data-book="hero">まずは無料で相談する</a>
+        <div class="cta-sub">
+          <p class="cta-sub-lead">準備は要りません。「何から手をつければいいか分からない」のままで大丈夫です。</p>
+          <p class="cta-sub-line">オンライン30分／カレンダーから日時を選ぶだけ</p>
+        </div>
+        <div class="hero-who">
+          <img src="images/profile.jpg" alt="代表 松田佑介" class="hero-who-face">
+          <span>対応するのは代表の松田です</span>
+        </div>
         <p class="hero-note">※オンライン可。初回は現状のヒアリングから。売り込みはしません。</p>
       </div>
       <div class="hero-visual">
@@ -500,11 +517,10 @@
           <div class="ba-row">
             <div class="ba-cell"><span class="lb">Before</span><span class="vl">発送処理 15分</span></div>
             <div class="ar">→</div>
-            <div class="ba-cell after"><span class="lb">After</span><span class="vl">10秒</span></div>
+            <div class="ba-cell after"><span class="lb">After</span><span class="af-main">10秒</span><span class="af-sub">発送処理（従来15分）</span></div>
           </div>
           <div class="case-foot">
-            <div class="cf"><span class="lb2">期間</span><span>―</span></div>
-            <div class="cf"><span class="lb2">やったこと</span><span>スプレッドシートの自動化・最新化</span></div>
+            <div class="cf"><span class="lb2">やったこと</span><span>スプレッドシートの<wbr>自動化・最新化</span></div>
           </div>
         </div>
         <div class="case reveal">
@@ -512,11 +528,11 @@
           <div class="ba-row">
             <div class="ba-cell"><span class="lb">Before</span><span class="vl">記帳の停滞・採用停止</span></div>
             <div class="ar">→</div>
-            <div class="ba-cell after"><span class="lb">After</span><span class="vl">記帳完了・採用3名</span></div>
+            <div class="ba-cell after"><span class="lb">After</span><span class="af-main">2週間</span><span class="af-sub">で記帳完了・採用3名</span></div>
           </div>
           <div class="case-foot">
             <div class="cf"><span class="lb2">期間</span><span>約2週間</span></div>
-            <div class="cf"><span class="lb2">やったこと</span><span>バックオフィスの仕組み化・資金繰りの日次可視化</span></div>
+            <div class="cf"><span class="lb2">やったこと</span><span>バックオフィスの仕組み化<wbr>・資金繰りの日次可視化</span></div>
           </div>
         </div>
         <div class="case reveal">
@@ -524,11 +540,10 @@
           <div class="ba-row">
             <div class="ba-cell"><span class="lb">Before</span><span class="vl">タスクの実行遅延が常態</span></div>
             <div class="ar">→</div>
-            <div class="ba-cell after"><span class="lb">After</span><span class="vl">3割超 削減</span></div>
+            <div class="ba-cell after"><span class="lb">After</span><span class="af-main">3割超</span><span class="af-sub">実行遅延を削減</span></div>
           </div>
           <div class="case-foot">
-            <div class="cf"><span class="lb2">期間</span><span>―</span></div>
-            <div class="cf"><span class="lb2">やったこと</span><span>会議ファシリ＋タスク分解・責任者と期限の明確化</span></div>
+            <div class="cf"><span class="lb2">やったこと</span><span>会議ファシリ＋タスク分解<wbr>・責任者と期限の明確化</span></div>
           </div>
         </div>
         <div class="case reveal">
@@ -536,11 +551,10 @@
           <div class="ba-row">
             <div class="ba-cell"><span class="lb">Before</span><span class="vl">繁忙期の進捗が不明</span></div>
             <div class="ar">→</div>
-            <div class="ba-cell after"><span class="lb">After</span><span class="vl">リアルタイム把握</span></div>
+            <div class="ba-cell after"><span class="lb">After</span><span class="af-main">毎日</span><span class="af-sub">繁忙期の進捗が見える</span></div>
           </div>
           <div class="case-foot">
-            <div class="cf"><span class="lb2">期間</span><span>―</span></div>
-            <div class="cf"><span class="lb2">やったこと</span><span>日報の仕組み化・自動集計と可視化</span></div>
+            <div class="cf"><span class="lb2">やったこと</span><span>日報の仕組み化<wbr>・自動集計と可視化</span></div>
           </div>
         </div>
       </div>
@@ -665,6 +679,10 @@
       <div class="limited">毎月 <b>3社</b> 様限定でお受けしています</div>
       <h2>その事業、<br>もう一段、前に進めませんか。</h2>
       <p>「何から手をつけるか」を整理するだけでも、次の一手が見えてきます。まずは30分、現状をお聞かせください。</p>
+      <div class="cta-sub cta-sub--center">
+        <p class="cta-sub-lead">準備は要りません。「何から手をつければいいか分からない」のままで大丈夫です。</p>
+        <p class="cta-sub-line">オンライン30分／カレンダーから日時を選ぶだけ</p>
+      </div>
       <div class="trust-row">
         <div><b>◎</b> オンライン対応可</div>
         <div><b>◎</b> 売り込みなし</div>
