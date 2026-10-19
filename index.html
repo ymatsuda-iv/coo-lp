@@ -214,15 +214,15 @@
   .ba-row{display:flex;align-items:stretch;gap:12px;background:var(--ivory);border-radius:14px;padding:18px 18px;}
   .ba-cell{flex:1;text-align:center;}
   .ba-cell .lb{display:block;font-size:.7rem;letter-spacing:.08em;color:var(--slate);font-weight:700;margin-bottom:6px;}
-  .ba-cell .vl{font-size:1rem;color:var(--slate);line-height:1.4;word-break:keep-all;overflow-wrap:anywhere;}
+  .ba-cell .vl{font-size:1rem;color:var(--slate);line-height:1.4;word-break:keep-all;}
   .ba-cell.after{background:var(--terra-deep);border-radius:12px;padding:12px 8px;box-shadow:0 8px 18px rgba(201,106,65,.28);display:flex;flex-direction:column;justify-content:center;}
   .ba-cell.after .lb{color:rgba(255,255,255,.82);}
   .af-main{display:block;font-family:"Shippori Mincho",serif;font-weight:800;color:#fff;white-space:nowrap;font-size:clamp(1.75rem,8vw,2.5rem);line-height:1.1;}
-  .af-sub{display:block;margin-top:6px;font-size:.74rem;color:rgba(255,255,255,.92);line-height:1.45;word-break:keep-all;overflow-wrap:anywhere;}
+  .af-sub{display:block;margin-top:6px;font-size:.74rem;color:rgba(255,255,255,.92);line-height:1.45;word-break:keep-all;}
   .ba-row .ar{display:flex;align-items:center;font-family:"Shippori Mincho",serif;color:var(--terra-deep);font-weight:800;font-size:1.5rem;}
   .case-foot{margin-top:16px;display:grid;gap:8px;}
   .cf{display:flex;gap:12px;font-size:.9rem;color:var(--slate-deep);align-items:baseline;}
-  .cf>span:last-child{word-break:keep-all;overflow-wrap:anywhere;}
+  .cf>span:last-child{word-break:keep-all;}
   .cf .lb2{flex:none;font-size:.72rem;font-weight:700;color:var(--terra-deep);background:rgba(201,106,65,.1);padding:.25em .7em;border-radius:6px;}
   @media(max-width:680px){.cases-grid{grid-template-columns:1fr;}}
 
@@ -517,7 +517,7 @@
           <div class="ba-row">
             <div class="ba-cell"><span class="lb">Before</span><span class="vl">発送処理 15分</span></div>
             <div class="ar">→</div>
-            <div class="ba-cell after"><span class="lb">After</span><span class="af-main">10秒</span><span class="af-sub">発送処理（従来15分）</span></div>
+            <div class="ba-cell after"><span class="lb">After</span><span class="af-main">10秒</span><span class="af-sub">発送処理<wbr>（従来15分）</span></div>
           </div>
           <div class="case-foot">
             <div class="cf"><span class="lb2">やったこと</span><span>スプレッドシートの<wbr>自動化・最新化</span></div>
@@ -538,9 +538,9 @@
         <div class="case reveal">
           <div class="meta">卸売事業会社</div>
           <div class="ba-row">
-            <div class="ba-cell"><span class="lb">Before</span><span class="vl">タスクの実行遅延が常態</span></div>
+            <div class="ba-cell"><span class="lb">Before</span><span class="vl">タスクの<wbr>実行遅延が<wbr>常態</span></div>
             <div class="ar">→</div>
-            <div class="ba-cell after"><span class="lb">After</span><span class="af-main">3割超</span><span class="af-sub">実行遅延を削減</span></div>
+            <div class="ba-cell after"><span class="lb">After</span><span class="af-main">3割超</span><span class="af-sub">実行遅延を<wbr>削減</span></div>
           </div>
           <div class="case-foot">
             <div class="cf"><span class="lb2">やったこと</span><span>会議ファシリ＋タスク分解<wbr>・責任者と期限の明確化</span></div>
@@ -549,9 +549,9 @@
         <div class="case reveal">
           <div class="meta">記帳代行会社</div>
           <div class="ba-row">
-            <div class="ba-cell"><span class="lb">Before</span><span class="vl">繁忙期の進捗が不明</span></div>
+            <div class="ba-cell"><span class="lb">Before</span><span class="vl">繁忙期の<wbr>進捗が不明</span></div>
             <div class="ar">→</div>
-            <div class="ba-cell after"><span class="lb">After</span><span class="af-main">毎日</span><span class="af-sub">繁忙期の進捗が見える</span></div>
+            <div class="ba-cell after"><span class="lb">After</span><span class="af-main">毎日</span><span class="af-sub">繁忙期の<wbr>進捗が見える</span></div>
           </div>
           <div class="case-foot">
             <div class="cf"><span class="lb2">やったこと</span><span>日報の仕組み化<wbr>・自動集計と可視化</span></div>
