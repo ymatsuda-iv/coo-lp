@@ -770,7 +770,7 @@
 
 <script>
   // ★ 予約フォーム／カレンダーのURLをここに設定（未設定時はページ内リンクのまま）
-  const BOOKING_URL = "#";
+  const BOOKING_URL = "https://calendar.app.google/wZFpp4sniX6GdugH6";
   document.querySelectorAll('[data-book]').forEach(function(a){
     if(BOOKING_URL && BOOKING_URL !== "#"){ a.href = BOOKING_URL; a.target = "_blank"; a.rel = "noopener"; } else { a.href = "#contact"; }
     a.addEventListener('click', function(){
