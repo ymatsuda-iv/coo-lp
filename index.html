@@ -326,6 +326,8 @@
   .book-form input:focus,.book-form textarea:focus{outline:none;border-color:var(--terra);box-shadow:0 0 0 3px rgba(201,106,65,.14);}
   .book-form textarea{resize:vertical;min-height:120px;line-height:1.7;}
   .book-form .hint{font-size:.78rem;color:var(--slate);margin-top:6px;}
+  .book-form .ferr{display:none;font-size:.8rem;color:var(--terra-deep);font-weight:700;margin-top:6px;}
+  .book-form .is-error .ferr,.book-form .ferr[style*="block"]{display:block;}
   .book-form .submit{width:100%;margin-top:8px;border:none;cursor:pointer;}
   @media(max-width:560px){.book-form{padding:30px 22px;}}
   .sticky-cta{position:fixed;bottom:0;left:0;right:0;z-index:40;display:none;
@@ -333,6 +335,7 @@
   .sticky-cta a{display:block;text-align:center;}
   @media(max-width:680px){.sticky-cta{display:block;} body{padding-bottom:76px;}}
 </style>
+<script src="https://sdk.form.run/js/v2/formrun.js"></script>
 </head>
 <body>
 
@@ -667,11 +670,12 @@
         <div><b>◎</b> 売り込みなし</div>
         <div><b>◎</b> 初回ヒアリング無料</div>
       </div>
-      <!-- ★ formrun接続：action を formrun のエンドポイントに、各 name を formrun の項目名に合わせてください -->
-      <form class="book-form" action="FORMRUN_ENDPOINT" method="POST">
+      <!-- formrun接続済み：class="formrun" / action / method は変更しないこと -->
+      <form class="book-form formrun" action="https://form.run/api/v1/r/ktjmmbw33r66464k94qvpzyw" method="post">
         <div class="field">
           <label>お名前（フルネーム）<span class="req">必須</span></label>
-          <input type="text" name="お名前" required>
+          <input type="text" name="お名前" data-formrun-required>
+          <div class="ferr" data-formrun-show-if-error="お名前">お名前をご入力ください</div>
         </div>
         <div class="field">
           <label>会社名・屋号<span class="opt">任意</span></label>
@@ -679,14 +683,22 @@
         </div>
         <div class="field">
           <label>メールアドレス<span class="req">必須</span></label>
-          <input type="email" name="メールアドレス" required placeholder="example@example.com">
+          <input type="text" name="メールアドレス" data-formrun-type="email" data-formrun-required placeholder="example@example.com">
+          <div class="ferr" data-formrun-show-if-error="メールアドレス">メールアドレスを正しくご入力ください</div>
         </div>
         <div class="field">
           <label>相談内容<span class="req">必須</span></label>
-          <textarea name="相談内容" required placeholder="現状のお困りごとや、相談したいことをお書きください。"></textarea>
+          <textarea name="相談内容" data-formrun-required placeholder="現状のお困りごとや、相談したいことをお書きください。"></textarea>
+          <div class="ferr" data-formrun-show-if-error="相談内容">相談内容をご入力ください</div>
           <p class="hint">いただいた内容をもとに、初回の無料相談で現状を整理します。</p>
         </div>
-        <button type="submit" class="cta cta--terra cta--big submit">この内容で相談を申し込む</button>
+        <!-- ボット投稿ブロック（非表示） -->
+        <div class="_formrun_gotcha">
+          <style media="screen">._formrun_gotcha {position:absolute!important;height:1px;width:1px;overflow:hidden;}</style>
+          <label for="_formrun_gotcha">If you are a human, ignore this field</label>
+          <input type="text" name="_formrun_gotcha" id="_formrun_gotcha" tabindex="-1">
+        </div>
+        <button type="submit" class="cta cta--terra cta--big submit" data-formrun-error-text="未入力の項目があります" data-formrun-submitting-text="送信中...">この内容で相談を申し込む</button>
       </form>
     </div>
   </section>
@@ -712,6 +724,25 @@
       if(typeof gtag === 'function'){ gtag('event','cta_click',{cta_location:a.getAttribute('data-book')}); }
     });
   });
+  // 送信完了後（formrunからのリダイレクト）にお礼を表示
+  if(new URLSearchParams(location.search).get('submitted')==='1'){
+    var f=document.querySelector('.book-form');
+    if(f){
+      while(f.firstChild){ f.removeChild(f.firstChild); }
+      var box=document.createElement('div');
+      box.style.cssText='text-align:center;padding:24px 8px;';
+      var h=document.createElement('div');
+      h.style.cssText='font-size:1.25rem;font-weight:700;color:var(--slate-deep);margin-bottom:10px;';
+      h.textContent='お申し込みありがとうございます';
+      var p=document.createElement('p');
+      p.style.cssText='color:var(--slate);line-height:1.9;';
+      p.appendChild(document.createTextNode('内容を確認のうえ、担当の松田より2営業日以内にご連絡いたします。'));
+      p.appendChild(document.createElement('br'));
+      p.appendChild(document.createTextNode('いただいたメールアドレス宛に自動返信をお送りしています。'));
+      box.appendChild(h); box.appendChild(p); f.appendChild(box);
+    }
+    if(typeof gtag==='function'){ gtag('event','generate_lead',{form:'coo_consult'}); }
+  }
   // header shadow on scroll
   const hdr=document.getElementById('hdr');
   addEventListener('scroll',()=>{hdr.classList.toggle('scrolled',scrollY>12);});
