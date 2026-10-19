@@ -795,10 +795,14 @@
 <div class="sticky-cta"><a href="#" class="cta cta--terra" style="width:100%;justify-content:center;" data-book="sticky">無料相談を予約する</a></div>
 
 <script>
-  // ★ 予約フォーム／カレンダーのURLをここに設定（未設定時はページ内リンクのまま）
+  // ★ 予約カレンダーのURL。"final-booking"ボタンだけ直リンク、他のCTAは下部の選択セクション(#contact)へ誘導
   const BOOKING_URL = "https://calendar.app.google/wZFpp4sniX6GdugH6";
   document.querySelectorAll('[data-book]').forEach(function(a){
-    if(BOOKING_URL && BOOKING_URL !== "#"){ a.href = BOOKING_URL; a.target = "_blank"; a.rel = "noopener"; } else { a.href = "#contact"; }
+    if(a.getAttribute('data-book') === 'final-booking' && BOOKING_URL && BOOKING_URL !== "#"){
+      a.href = BOOKING_URL; a.target = "_blank"; a.rel = "noopener";
+    } else {
+      a.href = "#contact";
+    }
     a.addEventListener('click', function(){
       if(typeof gtag === 'function'){ gtag('event','cta_click',{cta_location:a.getAttribute('data-book')}); }
     });
