@@ -1,0 +1,7 @@
+# 静的LP用 .htaccess（coo.innovagement.jp）
+# 常時SSL（http→https）のみ。不要なリライトは行わず、存在しないパスは通常の404を返す
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteCond %{HTTPS} off
+RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
+</IfModule>
