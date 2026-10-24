@@ -806,11 +806,11 @@
       a.href = "#contact";
     }
   });
-  // GA4 cta_click：予約CTA（hero / mid / final / sticky）のクリック時のみ、1クリック=1回だけ発火。button_positionを付与
-  var CTA_POSITION = { 'hero':'hero', 'mid':'mid', 'final-booking':'final', 'sticky':'sticky' };
+  // GA4 cta_click：予約CTA（header / menu / hero / mid / final / sticky）のクリック時のみ、1クリック=1回だけ発火。button_positionを付与
+  var CTA_POSITION = { 'header':'header', 'menu':'menu', 'hero':'hero', 'mid':'mid', 'final-booking':'final', 'sticky':'sticky' };
   document.querySelectorAll('[data-book]').forEach(function(a){
     var pos = CTA_POSITION[a.getAttribute('data-book')];
-    if(!pos) return; // header / menu（ナビ）は計測対象外
+    if(!pos) return; // 未定義のdata-bookのみスキップ（上記6CTAを計測）
     a.addEventListener('click', function(){
       if(typeof gtag === 'function'){ gtag('event','cta_click',{ button_position: pos }); }
     });
@@ -832,8 +832,9 @@
       p.appendChild(document.createTextNode('いただいたメールアドレス宛に自動返信をお送りしています。'));
       box.appendChild(h); box.appendChild(p); f.appendChild(box);
     }
-    // 送信成功時（formrunが submitted=1 へリダイレクト）のみ、1回だけ計測
-    if(typeof gtag==='function'){
+    // 計測は「formrun経由（referrerに form.run を含む）」の成功時のみ。完了URL(?submitted=1)を直接開いただけでは発火しない
+    var fromFormrun = (document.referrer || '').indexOf('form.run') !== -1;
+    if(fromFormrun && typeof gtag==='function'){
       gtag('event','generate_lead',{form:'coo_consult'});
       gtag('event','form_submit',{form:'coo_consult'});
     }
