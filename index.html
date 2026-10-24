@@ -739,7 +739,7 @@
       <div class="two-paths">
         <div class="path">
           <span class="path-tag">そのまま予約したい方</span>
-          <a href="#" class="cta cta--terra cta--big path-cta" data-book="final-booking">カレンダーで日程を選ぶ</a>
+          <a href="#" class="cta cta--terra cta--big path-cta" data-book="final-booking" data-booking="1">カレンダーで日程を選ぶ</a>
           <span class="path-note">空き枠からその場で予約（オンライン45分）</span>
         </div>
         <div class="path-divider"><span>または</span></div>
@@ -815,8 +815,8 @@
       if(typeof gtag !== 'function') return;
       // cta_click：別タブ遷移やページ離脱でも確実に送信するため beacon（CTAはhashスクロール/別タブのみで同タブ全画面遷移はしないため event_callback は不要）
       gtag('event','cta_click',{ button_position: pos, transport_type: 'beacon' });
-      // 予約URL（Googleカレンダー）を開くボタンのときは、遷移時点で booking_calendar_open も1回だけ発火（別タブでも送信されるよう beacon）
-      if(a.getAttribute('href') === BOOKING_URL){
+      // 予約リンク（data-booking属性付き＝Googleカレンダーを開くボタン。URL形式に依存しない）のときは、遷移時点で booking_calendar_open も1回だけ発火（別タブでも送信されるよう beacon）
+      if(a.hasAttribute('data-booking')){
         gtag('event','booking_calendar_open',{ button_position: pos, transport_type: 'beacon' });
       }
     });
