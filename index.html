@@ -821,13 +821,19 @@
       }
     });
   });
-  // form_start：フォームへの最初の入力時に1回だけ発火（GA4拡張計測「フォームの操作」はオフにして重複回避）
+  // form_start（初回入力で1回）＋ 送信ボタン押下フラグ（完了ページでの計測判定用・タイムスタンプ付き）
   (function(){
     var frm = document.querySelector('.book-form.formrun');
     if(frm){
       frm.addEventListener('input', function(){
         if(typeof gtag === 'function'){ gtag('event','form_start',{ form:'coo_consult' }); }
       }, { once:true });
+      var sbtn = frm.querySelector('button[type="submit"]');
+      if(sbtn){
+        sbtn.addEventListener('click', function(){
+          try{ sessionStorage.setItem('formSubmitTs', String(Date.now())); }catch(e){}
+        });
+      }
     }
   })();
   // 送信完了後（formrunからのリダイレクト）にお礼を表示
@@ -847,13 +853,15 @@
       p.appendChild(document.createTextNode('いただいたメールアドレス宛に自動返信をお送りしています。'));
       box.appendChild(h); box.appendChild(p); f.appendChild(box);
     }
-    // 計測は「formrun経由（referrerに form.run を含む）」の成功時のみ。完了URL(?submitted=1)を直接開いただけでは発火しない
-    var fromFormrun = (document.referrer || '').indexOf('form.run') !== -1;
-    if(fromFormrun && typeof gtag==='function'){
+    // 計測は「送信ボタン押下フラグが30分以内に存在する」成功時のみ。フラグ無し（直接アクセス）やリロードでは発火しない
+    var ts = 0; try{ ts = parseInt(sessionStorage.getItem('formSubmitTs') || '0', 10); }catch(e){}
+    var within30min = ts > 0 && (Date.now() - ts) <= 30*60*1000;
+    if(within30min && typeof gtag==='function'){
       gtag('event','generate_lead',{form:'coo_consult'});
       gtag('event','form_submit',{form:'coo_consult'});
     }
-    // リロードによる二重計測を防止（URLから submitted を除去）
+    // 発火後はフラグ削除＆URLから submitted を除去（リロードで再発火しない）
+    try{ sessionStorage.removeItem('formSubmitTs'); }catch(e){}
     if(history.replaceState){ try{ history.replaceState(null,'', location.pathname + '#contact'); }catch(e){} }
   }
   // mobile menu toggle
