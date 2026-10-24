@@ -798,14 +798,21 @@
 <script>
   // ★ 予約カレンダーのURL。"final-booking"ボタンだけ直リンク、他のCTAは下部の選択セクション(#contact)へ誘導
   const BOOKING_URL = "https://calendar.app.google/wZFpp4sniX6GdugH6";
+  // CTAのリンク先設定（計測とは分離）
   document.querySelectorAll('[data-book]').forEach(function(a){
     if(a.getAttribute('data-book') === 'final-booking' && BOOKING_URL && BOOKING_URL !== "#"){
       a.href = BOOKING_URL; a.target = "_blank"; a.rel = "noopener";
     } else {
       a.href = "#contact";
     }
+  });
+  // GA4 cta_click：予約CTA（hero / mid / final / sticky）のクリック時のみ、1クリック=1回だけ発火。button_positionを付与
+  var CTA_POSITION = { 'hero':'hero', 'mid':'mid', 'final-booking':'final', 'sticky':'sticky' };
+  document.querySelectorAll('[data-book]').forEach(function(a){
+    var pos = CTA_POSITION[a.getAttribute('data-book')];
+    if(!pos) return; // header / menu（ナビ）は計測対象外
     a.addEventListener('click', function(){
-      if(typeof gtag === 'function'){ gtag('event','cta_click',{cta_location:a.getAttribute('data-book')}); }
+      if(typeof gtag === 'function'){ gtag('event','cta_click',{ button_position: pos }); }
     });
   });
   // 送信完了後（formrunからのリダイレクト）にお礼を表示
@@ -825,7 +832,13 @@
       p.appendChild(document.createTextNode('いただいたメールアドレス宛に自動返信をお送りしています。'));
       box.appendChild(h); box.appendChild(p); f.appendChild(box);
     }
-    if(typeof gtag==='function'){ gtag('event','generate_lead',{form:'coo_consult'}); }
+    // 送信成功時（formrunが submitted=1 へリダイレクト）のみ、1回だけ計測
+    if(typeof gtag==='function'){
+      gtag('event','generate_lead',{form:'coo_consult'});
+      gtag('event','form_submit',{form:'coo_consult'});
+    }
+    // リロードによる二重計測を防止（URLから submitted を除去）
+    if(history.replaceState){ try{ history.replaceState(null,'', location.pathname + '#contact'); }catch(e){} }
   }
   // mobile menu toggle
   (function(){
