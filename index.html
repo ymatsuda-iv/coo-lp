@@ -812,9 +812,19 @@
     var pos = CTA_POSITION[a.getAttribute('data-book')];
     if(!pos) return; // 未定義のdata-bookのみスキップ（上記6CTAを計測）
     a.addEventListener('click', function(){
-      if(typeof gtag === 'function'){ gtag('event','cta_click',{ button_position: pos }); }
+      // transport_type:'beacon' で、別タブ遷移やページ離脱時も確実に送信（CTAはhashスクロール/別タブのみで同タブ全画面遷移はしないため event_callback は不要）
+      if(typeof gtag === 'function'){ gtag('event','cta_click',{ button_position: pos, transport_type: 'beacon' }); }
     });
   });
+  // form_start：フォームへの最初の入力時に1回だけ発火（GA4拡張計測「フォームの操作」はオフにして重複回避）
+  (function(){
+    var frm = document.querySelector('.book-form.formrun');
+    if(frm){
+      frm.addEventListener('input', function(){
+        if(typeof gtag === 'function'){ gtag('event','form_start',{ form:'coo_consult' }); }
+      }, { once:true });
+    }
+  })();
   // 送信完了後（formrunからのリダイレクト）にお礼を表示
   if(new URLSearchParams(location.search).get('submitted')==='1'){
     var f=document.querySelector('.book-form');
