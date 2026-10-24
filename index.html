@@ -812,8 +812,13 @@
     var pos = CTA_POSITION[a.getAttribute('data-book')];
     if(!pos) return; // 未定義のdata-bookのみスキップ（上記6CTAを計測）
     a.addEventListener('click', function(){
-      // transport_type:'beacon' で、別タブ遷移やページ離脱時も確実に送信（CTAはhashスクロール/別タブのみで同タブ全画面遷移はしないため event_callback は不要）
-      if(typeof gtag === 'function'){ gtag('event','cta_click',{ button_position: pos, transport_type: 'beacon' }); }
+      if(typeof gtag !== 'function') return;
+      // cta_click：別タブ遷移やページ離脱でも確実に送信するため beacon（CTAはhashスクロール/別タブのみで同タブ全画面遷移はしないため event_callback は不要）
+      gtag('event','cta_click',{ button_position: pos, transport_type: 'beacon' });
+      // 予約URL（Googleカレンダー）を開くボタンのときは、遷移時点で booking_calendar_open も1回だけ発火（別タブでも送信されるよう beacon）
+      if(a.getAttribute('href') === BOOKING_URL){
+        gtag('event','booking_calendar_open',{ button_position: pos, transport_type: 'beacon' });
+      }
     });
   });
   // form_start：フォームへの最初の入力時に1回だけ発火（GA4拡張計測「フォームの操作」はオフにして重複回避）
